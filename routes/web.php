@@ -2,9 +2,9 @@
 
 use App\Models\Products;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StoreController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +34,19 @@ Route::get('/aboutus', [StoreController::class, 'about']);
 Route::get('/admin', [UserController::class, 'adminpage']);
 
 //Manage Product page
-Route::get('/manageproduct', [UserController::class, 'manageproduct']);
+Route::get('/manageproduct', [StoreController::class, 'manageproduct']);
 
 //Store Product data
 Route::post('/products', [StoreController::class, 'store']);
+
+//Edit Product 
+Route::get('/manageproduct/edit/{id}', [StoreController::class, 'editProduct']);
+
+//Update Product
+Route::put('/manageproduct/update/{product}', [StoreController::class, 'update'])->name('products.update');
+
+//Cart or Order Page
+Route::get('/cart', [CartController::class, 'cart']);
 
 //View Product page
 Route::get('/products/{product}', [StoreController::class, 'product']);
@@ -45,18 +54,14 @@ Route::get('/products/{product}', [StoreController::class, 'product']);
 //Show Register/Create Form
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
-//Show Login Form
-Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
-
 //Create New User
 Route::post('/users', [UserController::class, 'store']);
 
 //Log User Out
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
-//Show Log in User
+//Show Login Form
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
 //Login User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
-

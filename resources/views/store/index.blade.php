@@ -7,23 +7,23 @@
       <div class="relative h-3/4 overflow-hidden rounded-lg ">
           <!-- Item 1 -->
           <div class="hidden duration-700 ease-in-out" data-carousel-item>
-              <img src="images/coke.jpg" class="absolute block w-full object-fit" alt="...">
+              <img src="images/promo1.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
           </div>
           <!-- Item 2 -->
           <div class="hidden duration-700 ease-in-out" data-carousel-item>
-              <img src="images/Globe.jpg" class="absolute block w-full object-fit" alt="...">
+              <img src="images/promo1.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
           </div>
           <!-- Item 3 -->
           <div class="hidden duration-700 ease-in-out" data-carousel-item>
-              <img src="images/bear.jpg" class="absolute block w-full object-fit" alt="...">
+              <img src="images/promo1.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
           </div>
           <!-- Item 4 -->
           <div class="hidden duration-700 ease-in-out" data-carousel-item>
-              <img src="images/promo1.jpg" class="absolute block w-full object-fit" alt="...">
+              <img src="images/promo1.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
           </div>
           <!-- Item 5 -->
           <div class="hidden duration-700 ease-in-out" data-carousel-item>
-              <img src="images/promo1.jpg" class="absolute block w-full object-fit" alt="...">
+              <img src="images/promo1.jpg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
           </div>
       </div>
       <!-- Slider indicators -->
@@ -53,6 +53,10 @@
       </button>
     </div>
 
+   
+
+    
+
     <!-- Dropdown -->
 
     <div class="container mx-auto">
@@ -68,15 +72,18 @@
         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 "
       ></div>
       <select
-      id="filterCategory"
-      onchange="filterProductsByCategory()"
-      class="border border-pink-600 text-gray-900 text-sm rounded-lg border-pink-600 border-s-2 focus:ring-red-600 focus:border-pink-600 block w-full p-2.5"
-  >
-      <option value="" selected>Choose a category</option>
-      @foreach ($products as $product)
-          <option value="{{ $product->category }}">{{ $product->category }}</option>
-      @endforeach
-  </select>
+        id="categories"
+        class="border border-pink-600 text-gray-900 text-sm rounded-lg border-pink-600 border-s-2 focus:ring-red-600 focus:border-pink-600 block w-full p-2.5"
+      >
+        <option selected>Choose a category</option>
+        <option>Canned Goods</option>
+        <option>Snacks</option>
+        <option>Cigarettes</option>
+        <option>Beverages</option>
+        <option>Personal Care</option>
+        <option>Dairy</option>
+        <option>Other</option>
+      </select>
     </div>
 
     <!-- Bestsellers -->
@@ -89,24 +96,16 @@
     </div>
     <div class="container my-12 mx-auto px-4 md:px-12">
       <div class="flex flex-wrap -mx-1 lg:-mx-4">
-
-        @forelse ($products as $product)
-        @if (empty(request('category')) || $product->category == request('category'))
-            <x-product-card :product="$product"/>
-        @endif
-    @empty
-        <p>No products found</p>
-    @endforelse
        
           
-          {{-- @unless(count($products)==0)
+          @unless(count($products)==0)
           @foreach ($products as $product)
           <x-product-card :product="$product"/>
           @endforeach
            
           @else
               <p>No products found</p>
-          @endunless --}}
+          @endunless
           
           
       </div>
@@ -123,35 +122,16 @@
     </div>
     <div class="container my-12 mx-auto px-4 md:px-12">
       <div class="flex flex-wrap -mx-1 lg:-mx-4">
-
-        @forelse ($products as $product)
-        @if (empty(request('category')) || $product->category == request('category'))
-            <x-product-card :product="$product"/>
-        @endif
-    @empty
-        <p>No products found</p>
-    @endforelse
-
-        {{-- @unless(count($products)==0)
+        @unless(count($products)==0)
         @foreach ($products as $product)
         <x-product-card :product="$product"/>
         @endforeach
          
         @else
             <p>No products found</p>
-        @endunless --}}
+        @endunless
         
       </div>
     </div>
 
   </x-layout>
-
-  <script>
-    function filterProductsByCategory() {
-        const selectedCategory = document.getElementById('filterCategory').value;
-        window.location.href = selectedCategory !== ''
-            ? `?category=${encodeURIComponent(selectedCategory)}`
-            : '/';
-    }
-  
-</script>
