@@ -13,21 +13,23 @@
             Sign in to your account
           </h1>
           <form
+            method="POST"
+            action="/users/authenticate"
             class="space-y-4 md:space-y-6"
-            action="#"
           >
+          @csrf
             <div>
               <label
                 for="email"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Username</label
+                >Email</label
               >
               <input
                 type="email"
                 name="email"
                 id="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Username"
+                placeholder="Enter email"
                 required=""
               />
             </div>
@@ -59,6 +61,7 @@
                 </div>
                 <div class="ml-3 text-sm">
                   <label
+                    required=""
                     for="remember"
                     class="text-gray-500 dark:text-gray-300"
                     >Remember me</label
@@ -79,8 +82,8 @@
             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
               Don’t have an account yet?
               <a
-                href="/"
-                class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                href="/register"
+                class="text-pink-400 hover:text-pinklue-700 hover:underline"
                 >Sign up</a
               >
             </p>

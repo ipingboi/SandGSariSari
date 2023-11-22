@@ -33,20 +33,30 @@ Route::get('/aboutus', [StoreController::class, 'about']);
 //Admin page
 Route::get('/admin', [UserController::class, 'adminpage']);
 
-
-
 //Manage Product page
 Route::get('/manageproduct', [UserController::class, 'manageproduct']);
-
-
 
 //Store Product data
 Route::post('/products', [StoreController::class, 'store']);
 
-
-
 //View Product page
 Route::get('/products/{product}', [StoreController::class, 'product']);
 
-// Filter
+//Show Register/Create Form
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+
+//Show Login Form
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+
+//Create New User
+Route::post('/users', [UserController::class, 'store']);
+
+//Log User Out
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+//Show Log in User
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+
+//Login User
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 

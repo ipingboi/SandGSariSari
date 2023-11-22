@@ -153,4 +153,5 @@
             ? `?category=${encodeURIComponent(selectedCategory)}`
             : '/';
     }
+  
 </script>

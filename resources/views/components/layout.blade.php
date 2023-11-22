@@ -77,13 +77,29 @@
             <li>
                 <a href="/aboutus" class="block py-2 px-3 text-pink-400 rounded hover:text-pink-600 md:hover:bg-transparent md:hover:text-pink-600 md:p-0 "><i class="fa-solid fa-address-card"></i> About us</a>
             </li>
+            {{-- Auth --}}
+
+            @auth
+            <li>
+                </a><span class="fonnt-bold text-pink-400 uppercase">Welcome {{auth()->user()->name}}</span>
+            </li>
+            <li>
+                <form method="POST" action="/logout" class="block py-2 px-3 text-pink-400 rounded hover:text-pink-600 md:hover:bg-transparent md:hover:text-pink-600 md:p-0 0">
+                  @csrf
+                  <button type="submit" class="hover:text-pink-600">
+                    <i class="fa-solid fa-door-closed"></i> Logout
+                  </button>
+                </form>
+            </li>
             
+            @else
             <li>
-                <a href="/register" class="block py-2 px-3 text-pink-400 rounded hover:text-pink-600 md:hover:bg-transparent md:hover:text-pink-600 md:p-0 0"><i class="fa-solid fa-user-plus"></i> Register</a>
-            </li>
-            <li>
-                <a href="/login" class="block py-2 px-3 text-pink-400 rounded hover:text-pink-600 md:hover:bg-transparent md:hover:text-pink-600 md:p-0 0"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
-            </li>
+              <a href="/register" class="block py-2 px-3 text-pink-400 rounded hover:text-pink-600 md:hover:bg-transparent md:hover:text-pink-600 md:p-0 0"><i class="fa-solid fa-user-plus"></i> Register</a>
+          </li>
+          <li>
+              <a href="/login" class="block py-2 px-3 text-pink-400 rounded hover:text-pink-600 md:hover:bg-transparent md:hover:text-pink-600 md:p-0 0"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+          </li>
+          @endauth
             <li>
               <a href="#" class="block py-2 px-3 text-pink-400 rounded hover:text-pink-600 md:hover:bg-transparent md:hover:text-pink-600 md:p-0 0"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
             </li>

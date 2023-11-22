@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
+use App\Models\Products;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,8 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(5)->create();
-        // \App\Models\Products::factory(8)->create();
+        $user = User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@sarisari.com'
+        ]);
+
+        Products::factory(6) ->create();([
+            'user_id' => $user->id
+        ]);  
+
 
 
         // Product::create
