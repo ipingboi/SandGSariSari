@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,12 +12,12 @@ class ProductController extends Controller
         $category = $request->input('category');
 
         // Fetch unique categories for the dropdown
-        $uniqueCategories = Products::distinct()->pluck('category');
+        $uniqueCategories = Product::distinct()->pluck('category');
 
         // Fetch products based on the category (if provided)
         $products = $category
-            ? Products::where('category', $category)->get()
-            : Products::all();
+            ? Product::where('category', $category)->get()
+            : Product::all();
 
         return view('products.index', ['products' => $products, 'uniqueCategories' => $uniqueCategories]);
     }

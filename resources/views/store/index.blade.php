@@ -53,10 +53,6 @@
       </button>
     </div>
 
-   
-
-    
-
     <!-- Dropdown -->
 
     <div class="container mx-auto">
@@ -94,9 +90,13 @@
     <div class="container my-12 mx-auto px-4 md:px-12">
       <div class="flex flex-wrap -mx-1 lg:-mx-4">
 
-        @foreach ($products as $product)
-    <x-product-card :product="$product"/>
-    @endforeach
+        @forelse ($products as $product)
+        @if (empty(request('category')) || $product->category == request('category'))
+            <x-product-card :product="$product"/>
+        @endif
+    @empty
+        <p>No products found</p>
+    @endforelse
        
           
           {{-- @unless(count($products)==0)
@@ -123,14 +123,23 @@
     </div>
     <div class="container my-12 mx-auto px-4 md:px-12">
       <div class="flex flex-wrap -mx-1 lg:-mx-4">
-        @unless(count($products)==0)
+
+        @forelse ($products as $product)
+        @if (empty(request('category')) || $product->category == request('category'))
+            <x-product-card :product="$product"/>
+        @endif
+    @empty
+        <p>No products found</p>
+    @endforelse
+
+        {{-- @unless(count($products)==0)
         @foreach ($products as $product)
         <x-product-card :product="$product"/>
         @endforeach
          
         @else
             <p>No products found</p>
-        @endunless
+        @endunless --}}
         
       </div>
     </div>
